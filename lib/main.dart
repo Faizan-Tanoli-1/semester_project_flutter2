@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sem_project/pages/signup.dart';
 import 'firebase_options.dart';
 
 import 'package:sem_project/pages/detail_page.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Onboarding(),
+      // home: Onboarding(),
+      home: SignupPage(),
     );
   }
 }
