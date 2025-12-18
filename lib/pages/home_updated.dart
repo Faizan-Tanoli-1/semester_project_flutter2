@@ -107,7 +107,6 @@ class _HomeState extends State<Home> {
                 const SizedBox(height: 15),
 
                 // Search Bar
-                // Search Bar
                 Container(
                   padding: const EdgeInsets.only(top: 8),
                   height: 55,

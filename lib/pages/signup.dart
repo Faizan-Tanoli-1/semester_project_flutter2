@@ -19,6 +19,7 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController passwordController = TextEditingController();
 
   bool isLoading = false;
+  bool showPassword = false;
 
   // Registration function
   registration() async {
@@ -159,8 +160,15 @@ class _SignupPageState extends State<SignupPage> {
                     _inputField(
                       hint: "Enter Password",
                       icon: Icons.lock,
-                      isPassword: true,
+                      isPassword: !showPassword,
                       controller: passwordController,
+                      showPasswordToggle: true,
+                      onPasswordToggle: () {
+                        setState(() {
+                          showPassword = !showPassword;
+                        });
+                      },
+                      isPasswordVisible: showPassword,
                     ),
 
                     const SizedBox(height: 50),
@@ -262,6 +270,9 @@ class _SignupPageState extends State<SignupPage> {
     required IconData icon,
     bool isPassword = false,
     required TextEditingController controller,
+    bool showPasswordToggle = false,
+    VoidCallback? onPasswordToggle,
+    bool isPasswordVisible = false,
   }) {
     return Container(
       height: 50,
@@ -276,7 +287,19 @@ class _SignupPageState extends State<SignupPage> {
           border: InputBorder.none,
           hintText: hint,
           prefixIcon: Icon(icon, color: const Color(0xff694879)),
-          contentPadding: const EdgeInsets.symmetric(vertical: 14),
+          suffixIcon: showPasswordToggle
+              ? GestureDetector(
+                  onTap: onPasswordToggle,
+                  child: Icon(
+                    isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                    color: const Color(0xff694879),
+                  ),
+                )
+              : null,
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 14,
+            horizontal: 12,
+          ),
         ),
       ),
     );
